@@ -11,9 +11,8 @@ def sql_select(db, sql_cmd):
     cursor.execute(sql_cmd)
     rows = cursor.fetchall()
     return rows
-
         
-DB_FILE = 'talk.db'
+DB_FILE = '../chatDb/chat.db'
 if os.path.isfile(DB_FILE):
     os.remove(DB_FILE)
 
