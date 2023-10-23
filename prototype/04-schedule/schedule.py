@@ -32,12 +32,13 @@ jobs = [
 ]
 """
 
-def chat(q):
+def chat(q, format="text"):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a chatbot"},
             {"role": "assistant", "content": f"{BACKGROUND}"},
+            {"role": "assistant", "content": f"output in {format} format"},
             {"role": "user", "content": f"{q}"}
         ]
     )
@@ -47,7 +48,7 @@ def chat(q):
 schedules = []
 
 for job in jobs:
-    r = chat(job)
+    r = chat(f"{job}", format="json")
     print(r)
     task = json.loads(r)
     task['原文'] = job
